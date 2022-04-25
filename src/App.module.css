@@ -1,0 +1,9 @@
+:root {
+    --app-height: 100vh
+}
+
+.containerApp {
+    min-height: var(--app-height);
+    max-height: var(--app-height);
+    overflow: auto;
+}

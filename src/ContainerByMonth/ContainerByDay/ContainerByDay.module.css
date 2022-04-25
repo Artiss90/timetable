@@ -1,0 +1,4 @@
+.containerDay{
+    width: calc(100%/7);
+    height: calc(var(--app-height) / 5);
+}
