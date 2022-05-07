@@ -63,8 +63,8 @@ const Modal = ({ onClose, isOpen, currentDay, currentMonth }) => {
     <div className={style.overlay} onClick={handleOverlayClick}>
       <div className={style.modal}>
         <div className={style.closeModal} onClick={handleOverlayClick}></div>
-        <input type="number" value={valueHours} onChange={onChangeValueHours} />
-        <button type="button" onClick={() => onSaveValueHours(valueHours)}>
+        <input type="number" value={valueHours} onChange={onChangeValueHours} className={style.field} />
+        <button type="button" onClick={() => onSaveValueHours(valueHours)} className={style.btnAccept}>
           Ok
         </button>
       </div>

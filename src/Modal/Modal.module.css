@@ -25,8 +25,8 @@
     border-radius: 10px;}
 
 .closeModal {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.3);
     padding: 3px;
@@ -48,4 +48,14 @@
 .closeModal:hover,
 .closeModal:focus {
     background-color: rgb(132, 184, 196);
+}
+
+.field{
+    width: 90%;
+    height: 20%;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+.btnAccept{
+    padding: 20px 40px;
 }
