@@ -1,4 +1,8 @@
-body {
+:root{
+  --color-active: rgb(132, 184, 196);
+} 
+
+body{
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -52,3 +56,7 @@ img {
 }
 button {color: #000;
 border: 1px solid #000;}
+button:hover,
+button:focus {
+  background-color: var(--color-active);
+}

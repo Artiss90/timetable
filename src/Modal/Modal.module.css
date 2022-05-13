@@ -50,7 +50,7 @@
 
 .closeModal:hover,
 .closeModal:focus {
-    background-color: rgb(132, 184, 196);
+    background-color: var(--color-active);
 }
 
 .field{
