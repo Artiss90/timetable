@@ -11,7 +11,7 @@ function ContainerByMonth() {
   ];
 
   const hoursLocal = JSON.parse(localStorage.getItem('hours'));
-  // * создаем базовую таблицу учёта часов если таковой нет
+  // TODO создаем базовую таблицу учёта часов если таковой нет
   if (!hoursLocal) {
     localStorage.setItem(
       'hours',
@@ -32,13 +32,20 @@ function ContainerByMonth() {
     );
   }
 
+  const priceByHourLocal = JSON.parse(localStorage.getItem('priceByHour'));
+  // TODO устанавливаем почасовую оплату если таковой нет
+  if (!priceByHourLocal) {
+    localStorage.setItem('priceByHour', JSON.stringify('80'));
+  }
+
   const [tableHours, setTableHours] = useState(hoursLocal);
   const [showModal, setShowModal] = useState(false);
+  const [showModalPrice, setShowModalPrice] = useState(false);
   const [currentDay, setCurrentDay] = useState(1);
   const [currentMonth, setCurrentMonth] = useState(5);
   const [totalHours, setTotalHours] = useState(0);
   const [totalWorkDay, setTotalWorkDay] = useState(0);
-  const [priceByHour, setPriceByHour] = useState(80);
+  const [priceByHour, setPriceByHour] = useState(priceByHourLocal);
 
   useEffect(() => {
     const currentTableHours = JSON.parse(localStorage.getItem('hours'));
@@ -64,6 +71,14 @@ function ContainerByMonth() {
     setTotalWorkDay(calcWorkDays);
   }, [currentMonth, showModal]);
 
+  useEffect(() => {
+    const currentPriceByHour = JSON.parse(localStorage.getItem('priceByHour'));
+    if (currentPriceByHour !== priceByHour) {
+      setPriceByHour(currentPriceByHour);
+    }
+  }, [priceByHour, showModalPrice]);
+
+  // *for modal set hours
   const onCloseModal = () => {
     setShowModal(false);
   };
@@ -72,6 +87,13 @@ function ContainerByMonth() {
     setShowModal(true);
   };
 
+  // *for modal set price by hours
+  const onCloseModalPrice = () => {
+    setShowModalPrice(false);
+  };
+  const onOpenModalPrice = () => {
+    setShowModalPrice(true);
+  };
   return (
     <div className={style.containerMain}>
       <ul className={style.containerMonth}>
@@ -83,6 +105,8 @@ function ContainerByMonth() {
           totalWorkDay={totalWorkDay}
           priceByHour={priceByHour}
           changeMonth={setCurrentMonth}
+          changePriceByHour={setPriceByHour}
+          onOpenModalPrice={onOpenModalPrice}
           currentMonth={currentMonth}
         />
       </ul>
@@ -91,6 +115,8 @@ function ContainerByMonth() {
       {showModal && (
         <Modal onClose={onCloseModal} isOpen={showModal} currentDay={currentDay} currentMonth={currentMonth} />
       )}
+      {/* //* модальное окно для изменения почасовой оплаты */}
+      {showModalPrice && <Modal onClose={onCloseModalPrice} isOpen={showModalPrice} currentPrice={priceByHour} />}
     </div>
   );
 }
