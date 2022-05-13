@@ -52,14 +52,16 @@ const MONTHS = [
   },
 ];
 
-function ContainerTools({ totalHours, priceByHour, changeMonth, currentMonth }) {
+function ContainerTools({ totalHours, totalWorkDay, priceByHour, changeMonth, currentMonth }) {
   const handleChange = (event) => {
     changeMonth(event.target.value);
   };
 
   return (
     <li className={style.supportContainer}>
-      <p>{`${totalHours} год. * ${priceByHour} грн. = ${totalHours * priceByHour} грн.`}</p>
+      <p>{`${totalHours} год. * ${priceByHour} грн. = ${totalHours * priceByHour} грн. (${totalWorkDay} ${
+        totalWorkDay > 4 ? 'змін' : 'зміни'
+      })`}</p>
       <TextField
         id="outlined-select-currency"
         select

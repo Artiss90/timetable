@@ -37,6 +37,7 @@ function ContainerByMonth() {
   const [currentDay, setCurrentDay] = useState(1);
   const [currentMonth, setCurrentMonth] = useState(5);
   const [totalHours, setTotalHours] = useState(0);
+  const [totalWorkDay, setTotalWorkDay] = useState(0);
   const [priceByHour, setPriceByHour] = useState(80);
 
   useEffect(() => {
@@ -45,13 +46,22 @@ function ContainerByMonth() {
       return;
     }
     setTableHours(currentTableHours);
+    // * всего рабочих часов за месяц
     const calcHours = Object.values(currentTableHours[currentMonth]).reduce((acc, item) => {
       if (!item) {
         return acc;
       }
       return (acc += +item);
     }, 0);
+    // * всего количество рабочих дней за месяц
+    const calcWorkDays = Object.values(currentTableHours[currentMonth]).reduce((acc, item) => {
+      if (!item) {
+        return acc;
+      }
+      return (acc += 1);
+    }, 0);
     setTotalHours(calcHours);
+    setTotalWorkDay(calcWorkDays);
   }, [currentMonth, showModal]);
 
   const onCloseModal = () => {
@@ -70,6 +80,7 @@ function ContainerByMonth() {
         ))}
         <ContainerTools
           totalHours={totalHours}
+          totalWorkDay={totalWorkDay}
           priceByHour={priceByHour}
           changeMonth={setCurrentMonth}
           currentMonth={currentMonth}
