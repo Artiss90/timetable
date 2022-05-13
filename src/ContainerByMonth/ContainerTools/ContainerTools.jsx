@@ -1,9 +1,7 @@
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 
 import style from './ContainerTools.module.css';
-import { useState } from 'react';
 
 const MONTHS = [
   {
@@ -52,14 +50,19 @@ const MONTHS = [
   },
 ];
 
-function ContainerTools({ totalHours, priceByHour, changeMonth, currentMonth }) {
+function ContainerTools({ totalHours, totalWorkDay, priceByHour, onOpenModalPrice, changeMonth, currentMonth }) {
   const handleChange = (event) => {
     changeMonth(event.target.value);
   };
 
   return (
     <li className={style.supportContainer}>
-      <p>{`${totalHours} год. * ${priceByHour} грн. = ${totalHours * priceByHour} грн.`}</p>
+      <button className={style.btn} type="button" onClick={onOpenModalPrice}>
+        Змінити оплата/год
+      </button>
+      <p>{`${totalHours} год. * ${priceByHour} грн. = ${totalHours * priceByHour} грн. (${totalWorkDay} ${
+        totalWorkDay > 4 ? 'змін' : 'зміни'
+      })`}</p>
       <TextField
         id="outlined-select-currency"
         select
