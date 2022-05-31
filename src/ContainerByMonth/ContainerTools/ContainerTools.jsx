@@ -25,6 +25,10 @@ const MONTHS = [
     label: 'Травень',
   },
   {
+    value: 6,
+    label: 'Червень',
+  },
+  {
     value: 7,
     label: 'Липень',
   },
