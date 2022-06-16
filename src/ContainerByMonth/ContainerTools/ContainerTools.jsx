@@ -57,6 +57,7 @@ const MONTHS = [
 function ContainerTools({ totalHours, totalWorkDay, priceByHour, onOpenModalPrice, changeMonth, currentMonth }) {
   const handleChange = (event) => {
     changeMonth(event.target.value);
+    localStorage.setItem('month', JSON.stringify(event.target.value));
   };
 
   return (

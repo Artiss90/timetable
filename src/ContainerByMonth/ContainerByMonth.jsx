@@ -71,12 +71,22 @@ function ContainerByMonth() {
     setTotalWorkDay(calcWorkDays);
   }, [currentMonth, showModal]);
 
+  // * change prise by hour
   useEffect(() => {
     const currentPriceByHour = JSON.parse(localStorage.getItem('priceByHour'));
     if (currentPriceByHour !== priceByHour) {
       setPriceByHour(currentPriceByHour);
     }
   }, [priceByHour, showModalPrice]);
+
+  // * change month
+  useEffect(() => {
+    const currentMonthLocal = JSON.parse(localStorage.getItem('month'));
+
+    if (currentMonthLocal !== currentMonth && currentMonthLocal) {
+      setCurrentMonth(currentMonthLocal);
+    }
+  }, [currentMonth]);
 
   // *for modal set hours
   const onCloseModal = () => {
